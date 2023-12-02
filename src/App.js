@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import { Suspense } from "react";
+import UserForm from "./components/sign/";
+import { Barchart, PieChart } from "./components/charts";
+import React, { Suspense } from "react";
 const queryClient = new QueryClient({});
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
       <BrowserRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/" element={<h1>home</h1>} />
+            <Route path="/" element={<UserForm />} />
             <Route path="/about" element={<h1>about</h1>} />
+            <Route path="/charts" element={<PieChart />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
