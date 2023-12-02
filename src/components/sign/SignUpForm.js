@@ -3,14 +3,8 @@ import React, { useState } from "react";
 import "./UserForm.css";
 import { signUpSchema } from "../../schemas";
 import { Field, Form, Formik, useFormik } from "formik";
-
-import { useSignup } from "../../hooks/sign";
-
-const SignUpForm = () => {
-  const { mutate } = useSignup(
-    () => alert("Success!"),
-    () => alert("Error!")
-  );
+import { saveUser } from "../../storage/LocalStorage";
+const SignUpForm = ({ clickSignIn }) => {
   const {
     values,
     handleBlur,
@@ -30,7 +24,8 @@ const SignUpForm = () => {
     validationSchema: signUpSchema,
     // call on submit function
     onSubmit: (values) => {
-      mutate(values);
+      saveUser(values.username, values.email, values.password);
+      clickSignIn();
     },
   });
 

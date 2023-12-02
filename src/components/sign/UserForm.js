@@ -3,6 +3,7 @@ import axios from "axios";
 import "./UserForm.css";
 import SignUpForm from "./SignUpForm";
 import SignInForm from "./SignInForm";
+import { useRef } from "react";
 
 const UserForm = () => {
   const [user, setUser] = useState({
@@ -11,14 +12,18 @@ const UserForm = () => {
     email: "",
   });
 
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
+  useEffect(() => {}, []);
 
   const handleToggleForm = () => {
     setIsSignUp(!isSignUp);
   };
   const [isSignUp, setIsSignUp] = useState(true);
+  const refBtn = useRef(null);
+
+  // create fucntion when signu click button
+  const handleClickSignIn = () => {
+    refBtn.current.click();
+  };
 
   return (
     <>
@@ -26,7 +31,7 @@ const UserForm = () => {
         className={`container ${isSignUp ? "right-panel-active" : ""}`}
         id="container"
       >
-        <SignUpForm />
+        <SignUpForm clickSignIn={handleClickSignIn} />
 
         <SignInForm />
 
@@ -35,7 +40,12 @@ const UserForm = () => {
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
               <p> please login with your personal info</p>
-              <button className="ghost" onClick={handleToggleForm} id="signIn">
+              <button
+                ref={refBtn}
+                className="ghost"
+                onClick={handleToggleForm}
+                id="signIn"
+              >
                 Sign In
               </button>
             </div>

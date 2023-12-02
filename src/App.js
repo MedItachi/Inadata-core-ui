@@ -1,7 +1,11 @@
+// ------Import components------
+
+import { Barchart, PieChart } from "./components/charts";
+import UserForm from "./components/sign/";
+import FileUploader from "./components/fileUploder";
+// ------------------------------
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UserForm from "./components/sign/";
-import { Barchart, PieChart } from "./components/charts";
 import React, { Suspense } from "react";
 const queryClient = new QueryClient({});
 
